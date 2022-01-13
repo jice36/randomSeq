@@ -1,4 +1,4 @@
-package randomNumber
+package randomSeq
 
 import (
 	"bytes"

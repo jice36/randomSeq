@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"randomNumber"
+	"randomSeq"
 	"time"
 )
 
@@ -13,18 +13,20 @@ import (
 func main() {
 	str, test := timeTest("test gen key 100mb " )
 	var i int
-	var t randomNumber.Test
-	var rng randomNumber.ISAAC
+	var t randomSeq.Test
+	var rng randomSeq.ISAAC
 	file, err := os.Create("1mb.txt")
 	if err != nil{
 		fmt.Println("Unable to create file:", err)
 		os.Exit(1)
 	}
 	defer file.Close()
-	for i < 6250000{
+	for i < 6250{
 		seq := rng.GenSeq()
 		if flag, err := t.CheckSeq(seq); flag == true && err == nil{
+			//seq = append(seq, byte('\n'))
 			file.Write(seq)
+			file.Write([]byte{'\n'})
 		}
 
 		i++
@@ -52,5 +54,3 @@ func randSlice(s []byte) {
 		i++
 	}
 }
-
-
